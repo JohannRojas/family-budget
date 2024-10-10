@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Family Budget</string>
+    <string name="title_budget">Presupuesto</string>
+    <string name="title_bills">Gastos</string>
+    <string name="title_income">Ingresos</string>
+</resources>
