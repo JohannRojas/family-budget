@@ -28,7 +28,7 @@ class BudgetFragment : Fragment() {
         _binding = FragmentBillsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textIncome
+        val textView: TextView = binding.textBills
         budgetViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }

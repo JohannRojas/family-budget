@@ -9,11 +9,13 @@
     <item
         android:id="@+id/navigation_bills"
         android:icon="@drawable/ic_shopping_cart_24dp"
-        android:title="@string/title_bills" />
+        android:title="@string/title_bills"
+        />
 
     <item
         android:id="@+id/navigation_income"
         android:icon="@drawable/ic_attach_money_24dp"
-        android:title="@string/title_income" />
+        android:title="@string/title_income"
+        />
 
 </menu>
