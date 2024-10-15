@@ -7,49 +7,79 @@
     tools:context=".ui.bills.BillsFragment">
 
 
-    <include
+    <com.example.familybudget.ui.CustomCard.CustomCardView
         android:id="@+id/totalBudgetCard"
-        layout="@layout/custom_card"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="32dp"
+        app:cardBackgroundColor="@color/secondary"
+        app:cardLabelText="Presupuesto Total:"
+        app:cardValueText="$1'450.000"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <include
+    <com.example.familybudget.ui.CustomCard.CustomCardView
         android:id="@+id/billsCard"
-        layout="@layout/custom_card"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/Theme.FamilyBudget"
-        android:layout_marginTop="16dp"
+        android:layout_height="56dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="32dp"
+        app:cardBackgroundColor="@color/alert"
+        app:cardLabelText="Gastos:"
+        app:cardValueText="$200.000"
         app:layout_constraintTop_toBottomOf="@id/totalBudgetCard" />
 
-    <include
+    <com.example.familybudget.ui.CustomCard.CustomCardView
         android:id="@+id/remainingCard"
-        layout="@layout/custom_card"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_height="56dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="32dp"
+        app:cardBackgroundColor="@color/secondary"
+        app:cardLabelText="Restante:"
+        app:cardValueText="$1'250.000"
         app:layout_constraintTop_toBottomOf="@id/billsCard" />
 
     <TextView
         android:id="@+id/labelBudgetInput"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
         android:text="Ajustar presupuesto"
         android:textColor="@color/black"
         android:textSize="22sp"
-        android:layout_marginTop="16dp"
-        android:layout_marginHorizontal="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="32dp"
         app:layout_constraintTop_toBottomOf="@+id/remainingCard" />
 
-    <com.google.android.material.textfield.TextInputEditText
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/OutlinedTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/labelBudgetInput"
         android:layout_marginHorizontal="16dp"
-        android:id="@+id/inputBudget"
+        android:hint="Nuevo presupuesto"
+        app:boxBackgroundColor="@color/white"
+        app:boxBackgroundMode="outline"
+        app:boxCornerRadiusBottomEnd="8dp"
+        app:boxCornerRadiusBottomStart="8dp"
+        app:boxCornerRadiusTopEnd="8dp"
+        app:boxCornerRadiusTopStart="8dp"
+        app:boxStrokeColor="@color/secondary"
+        app:boxStrokeWidth="1dp"
+        app:counterMaxLength="10"
+        app:endIconMode="clear_text"
+        app:errorEnabled="true"
+        app:hintEnabled="true"
+        app:layout_constraintTop_toBottomOf="@id/labelBudgetInput"
+        app:startIconDrawable="@drawable/ic_attach_money_24dp">
 
-        />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputBudget"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
