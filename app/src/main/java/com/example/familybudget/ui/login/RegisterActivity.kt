@@ -1,9 +1,10 @@
-package com.example.familybudget.ui.Login
+package com.example.familybudget.ui.login
 
 // RegisterActivity.kt
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.familybudget.databinding.ActivityRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
 
 class RegisterActivity : AppCompatActivity() {
