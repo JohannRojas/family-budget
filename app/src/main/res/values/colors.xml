@@ -6,6 +6,7 @@
     <color name="secondary">#2A9D8F</color>
     <color name="alert">#E76F51</color>
     <color name="warning">#E9C46A</color>
+    <color name="transparent">#00000000</color>
 
     <!-- Add the following lines for active and inactive label colors -->
     <color name="active_label_color">#000000</color> <!-- White color for active labels -->

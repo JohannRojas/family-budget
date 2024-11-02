@@ -1,21 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
     <item
-        android:id="@+id/navigation_budget"
-        android:icon="@drawable/ic_wallet_24dp"
-        android:title="@string/title_budget" />
-
+        android:id="@+id/navigation_presupuesto"
+        android:icon="@drawable/ic_presupuesto"
+        android:title="Presupuesto" />
     <item
-        android:id="@+id/navigation_bills"
-        android:icon="@drawable/ic_shopping_cart_24dp"
-        android:title="@string/title_bills"
-        />
-
+        android:id="@+id/navigation_gastos"
+        android:icon="@drawable/ic_gastos"
+        android:title="Gastos" />
     <item
-        android:id="@+id/navigation_income"
-        android:icon="@drawable/ic_attach_money_24dp"
-        android:title="@string/title_income"
-        />
+        android:id="@+id/navigation_ingresos"
+        android:icon="@drawable/ic_ingresos"
+        android:title="Ingresos" />
 
 </menu>

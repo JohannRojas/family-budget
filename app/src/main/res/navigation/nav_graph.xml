@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/presupuestoFragment">
+
+    <fragment
+        android:id="@+id/presupuestoFragment"
+        android:name="com.example.familybudget.fragments.BudgetFragment"
+        android:label="Presupuesto" />
+    <fragment
+        android:id="@+id/gastosFragment"
+        android:name="com.example.familybudget.fragments.ExpensesFragment"
+        android:label="Gastos" />
+    <fragment
+        android:id="@+id/ingresosFragment"
+        android:name="com.example.familybudget.fragments.IncomesFragment"
+        android:label="Ingresos" />
+</navigation>

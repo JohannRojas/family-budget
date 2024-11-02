@@ -10,7 +10,7 @@
         android:id="@+id/loginTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/register_title"
+        android:text="@string/app_name"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="32sp"
@@ -21,7 +21,7 @@
         android:id="@+id/etEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="112dp"
         android:hint="Correo electrónico"
         android:inputType="textEmailAddress" />
 
@@ -33,23 +33,16 @@
         android:layout_marginTop="40dp"
         android:hint="Contraseña"
         android:inputType="textPassword" />
-    <!--    repetir contraseña -->
-    <EditText
-        android:id="@+id/etConfirmPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:hint="Confirma la Contraseña"
-        android:inputType="textPassword" />
 
     <!-- Botón de inicio de sesión -->
     <Button
-        android:id="@+id/btnRegisterAccount"
+        android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="56dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/login_text"
         app:cornerRadius="16dp"
-        android:layout_marginTop="64dp"
-        android:text="@string/create_account_button"
+        app:icon="@drawable/ic_login"
         app:iconGravity="textStart" />
 
     <!-- Separador con texto en medio de "O continua con" -->
@@ -57,9 +50,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginVertical="32dp"
         android:gravity="center_vertical"
-        android:layout_marginVertical="32dp">
+        android:orientation="horizontal">
 
         <View
             android:layout_width="0dp"
@@ -72,7 +65,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="8dp"
-            android:text="@string/alternative_text_register"
+            android:text="@string/or_continue_with_text"
             android:textColor="@color/secondary"
             android:textSize="14sp"
             android:textStyle="bold" />
@@ -92,13 +85,49 @@
         android:layout_height="56dp"
         android:layout_marginBottom="32dp"
         android:backgroundTint="@color/white"
-        app:icon="@drawable/google_logo"
-        app:iconTint="@null"
         android:text="@string/google_signin_text"
         android:textColor="@color/black"
+        app:borderWidth="1dp"
         app:cornerRadius="16dp"
-        app:borderWidth="1dp" />
+        app:icon="@drawable/google_logo"
+        app:iconTint="@null" />
 
+    <TextView
+        android:id="@+id/textOr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="32dp"
+        android:text="¿Olvidaste tu contraseña?"
+        android:textAlignment="center"
+        android:textColor="@color/secondary"
+        android:textSize="14sp"
+        android:textStyle="bold" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_have_account_text"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/btnRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/create_account_text"
+            android:textAlignment="center"
+            android:textColor="@color/secondary"
+            android:textSize="14sp"
+            android:textStyle="bold" />
     </LinearLayout>
+
+</LinearLayout>

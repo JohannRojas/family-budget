@@ -3,4 +3,15 @@
     <string name="title_budget">Presupuesto</string>
     <string name="title_bills">Gastos</string>
     <string name="title_income">Ingresos</string>
+    <string name="WEB_CLIENT_ID">892354353679-lpoqv56jag2g61t3gccmba1mump4g3l3.apps.googleusercontent.com</string>
+    <string name="settings_title">Ajustes</string>
+    <string name="register_title">Registrate en Family Budget</string>
+    <string name="create_account_button">Crear cuenta</string>
+    <string name="google_signin_text">Iniciar sesión con Google</string>
+    <string name="alternative_text_register">O registrate con</string>
+    <string name="or_continue_with_text">O continua con</string>
+    <string name="no_have_account_text">¿No tienes una cuenta?</string>
+    <string name="create_account_text">" Crear cuenta"</string>
+    <string name="login_text">Ingresar</string>
+
 </resources>

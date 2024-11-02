@@ -1,4 +1,4 @@
-package com.example.familybudget.ui.CustomCard
+package com.example.familybudget.ui
 
 import com.example.familybudget.R
 
