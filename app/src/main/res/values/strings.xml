@@ -13,5 +13,11 @@
     <string name="no_have_account_text">¿No tienes una cuenta?</string>
     <string name="create_account_text">" Crear cuenta"</string>
     <string name="login_text">Ingresar</string>
+    <string name="add_budget">Añadir presupuesto</string>
+    <string name="new_budget_title">Nuevo presupuesto</string>
+    <string name="add_new_expense_label">Agregar nuevo gasto</string>
+    <string name="add_expense_button">Añadir nuevo gasto</string>
+    <string name="amount_hint">Monto</string>
+    <string name="origin_hint">Origen</string>
 
 </resources>

@@ -54,7 +54,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:hint="Nuevo presupuesto"
+        android:hint="@string/new_budget_title"
         app:boxBackgroundColor="@color/white"
         app:boxBackgroundMode="filled"
         app:boxCornerRadiusBottomEnd="8dp"
@@ -88,7 +88,7 @@
         android:layout_height="56dp"
         app:cornerRadius="16dp"
         android:layout_marginHorizontal="16dp"
-        android:text="Añadir presupuesto"
+        android:text="@string/add_budget"
         app:layout_constraintTop_toBottomOf="@id/OutlinedTextInputLayout"
         android:layout_marginTop="32dp"
         />

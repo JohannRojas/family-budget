@@ -2,6 +2,7 @@
 <resources>
     <declare-styleable name="CustomCardView">
         <attr name="cardBackgroundColor" format="color" />
+        <attr name="cardTextColor" format="color" />
         <attr name="cardLabelText" format="string" />
         <attr name="cardValueText" format="string" />
     </declare-styleable>

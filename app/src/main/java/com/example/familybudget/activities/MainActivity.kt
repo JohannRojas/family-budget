@@ -13,6 +13,8 @@ import com.example.familybudget.R
 import com.example.familybudget.adapters.ViewPagerAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.FirebaseApp
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,6 +29,11 @@ class MainActivity : AppCompatActivity() {
 
         FirebaseApp.initializeApp(this)
         setContentView(R.layout.activity_main)
+
+        val auth = FirebaseAuth.getInstance()
+
+        // Initialize Firebase Database
+        val database = FirebaseDatabase.getInstance()
 
         // Configurar Toolbar
         toolbar = findViewById(R.id.toolbar)

@@ -1,62 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.example.familybudget.ui.CustomCardView
-        android:id="@+id/totalBudgetCard"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="32dp"
-        app:cardBackgroundColor="@color/warning"
-        app:cardLabelText="Hogar:"
-        app:cardValueText="$1'450.000"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:layout_height="400dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/labelBudgetInput"
+        android:layout_marginVertical="32dp">
 
-    <com.example.familybudget.ui.CustomCardView
-        android:id="@+id/billsCard"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="32dp"
-        app:cardBackgroundColor="@color/warning"
-        app:cardLabelText="Gastos:"
-        app:cardValueText="$200.000"
-        app:layout_constraintTop_toBottomOf="@id/totalBudgetCard"/>
-
-    <com.example.familybudget.ui.CustomCardView
-        android:id="@+id/remainingCard"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="32dp"
-        app:cardBackgroundColor="@color/warning"
-        app:cardLabelText="Restante:"
-        app:cardValueText="$1'250.000"
-        app:layout_constraintTop_toBottomOf="@id/billsCard"/>
+        <LinearLayout
+            android:id="@+id/expensesContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="16dp"
+            android:orientation="vertical" />
+    </ScrollView>
 
     <TextView
         android:id="@+id/labelBudgetInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:text="Ajustar presupuesto"
+        android:text="@string/add_new_expense_label"
         android:textColor="@color/black"
         android:textSize="22sp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintTop_toBottomOf="@+id/remainingCard" />
+        app:layout_constraintBottom_toTopOf="@+id/OutlinedTextInputLayout" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/OutlinedTextInputLayout"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:hint="Origen"
+        android:hint="@string/origin_hint"
         app:boxBackgroundColor="@color/white"
-        app:boxBackgroundMode="outline"
         app:boxCornerRadiusBottomEnd="8dp"
         app:boxCornerRadiusBottomStart="8dp"
         app:boxCornerRadiusTopEnd="8dp"
@@ -64,16 +43,44 @@
         app:boxStrokeColor="@color/secondary"
         app:boxStrokeWidth="1dp"
         app:counterMaxLength="10"
-        app:endIconMode="clear_text"
         app:errorEnabled="true"
         app:hintEnabled="true"
-        app:layout_constraintTop_toBottomOf="@id/labelBudgetInput"
+        app:layout_constraintBottom_toTopOf="@+id/addExpenses"
         app:layout_constraintStart_toStartOf="parent"
-        app:startIconDrawable="@drawable/ic_attach_money_24dp">
+        app:startIconDrawable="@drawable/ic_search">
 
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/origin"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:inputType="textAutoComplete" />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/OutlinedTextInputLayoutOrigin"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:hint="@string/amount_hint"
+        app:boxBackgroundColor="@color/white"
+        app:boxCornerRadiusBottomEnd="8dp"
+        app:boxCornerRadiusBottomStart="8dp"
+        app:boxCornerRadiusTopEnd="8dp"
+        app:boxCornerRadiusTopStart="8dp"
+        app:boxStrokeColor="@color/secondary"
+        app:counterMaxLength="10"
+        app:errorEnabled="true"
+        app:hintEnabled="true"
+        app:layout_constraintBottom_toTopOf="@+id/addExpenses"
+        app:layout_constraintStart_toEndOf="@id/OutlinedTextInputLayout"
+        app:startIconDrawable="@drawable/ic_attach_money_24dp">
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/amount"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal" />
@@ -81,48 +88,15 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/OutlinedTextInputLayoutOrigin"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:hint="Monto"
-        app:boxBackgroundColor="@color/white"
-        app:boxBackgroundMode="outline"
-        app:boxCornerRadiusBottomEnd="8dp"
-        app:boxCornerRadiusBottomStart="8dp"
-        app:boxCornerRadiusTopEnd="8dp"
-        app:boxCornerRadiusTopStart="8dp"
-        app:boxStrokeColor="@color/secondary"
-        app:boxStrokeWidth="1dp"
-        app:counterMaxLength="10"
-        app:endIconMode="clear_text"
-        app:errorEnabled="true"
-        app:hintEnabled="true"
-        app:layout_constraintTop_toBottomOf="@id/labelBudgetInput"
-        app:layout_constraintStart_toEndOf="@id/OutlinedTextInputLayout"
-        app:startIconDrawable="@drawable/ic_attach_money_24dp">
-
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/amount"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:inputType="numberDecimal" />
-
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-<!--    Button to add expenses -->
+    <!--    Button to add expenses -->
     <Button
         android:id="@+id/addExpenses"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="32dp"
+        android:text="@string/add_expense_button"
         app:cornerRadius="16dp"
-        android:text="Añadir nuevo gasto"
-        app:layout_constraintTop_toBottomOf="@id/OutlinedTextInputLayoutOrigin"
-        android:layout_marginTop="32dp"
-        />
+        app:layout_constraintBottom_toBottomOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
