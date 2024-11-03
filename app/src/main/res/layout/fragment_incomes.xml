@@ -1,21 +1,22 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingTop="32dp"
+        android:paddingBottom="16dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/labelIncomeInput"
-        android:layout_marginVertical="32dp">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:id="@+id/incomesContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingVertical="16dp"
             android:orientation="vertical" />
     </ScrollView>
 
@@ -31,10 +32,9 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/OutlinedTextInputLayout"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
         android:hint="@string/origin_hint"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         app:boxBackgroundColor="@color/white"
         app:boxCornerRadiusBottomEnd="8dp"
         app:boxCornerRadiusBottomStart="8dp"
@@ -42,42 +42,44 @@
         app:boxCornerRadiusTopStart="8dp"
         app:boxStrokeColor="@color/secondary"
         app:boxStrokeWidth="1dp"
-        app:counterMaxLength="10"
+        app:counterMaxLength="15"
         app:errorEnabled="true"
         app:hintEnabled="true"
         app:layout_constraintBottom_toTopOf="@+id/addIncomes"
         app:layout_constraintStart_toStartOf="parent"
-        app:startIconDrawable="@drawable/ic_search">
+        app:layout_constraintEnd_toStartOf="@+id/OutlinedTextInputLayoutOrigin"
+        app:layout_constraintWidth_percent="0.45">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/origin"
-            android:layout_width="150dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textAutoComplete" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/OutlinedTextInputLayoutOrigin"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
         android:hint="@string/amount_hint"
+        app:startIconDrawable="@drawable/ic_attach_money_24dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         app:boxBackgroundColor="@color/white"
         app:boxCornerRadiusBottomEnd="8dp"
         app:boxCornerRadiusBottomStart="8dp"
         app:boxCornerRadiusTopEnd="8dp"
         app:boxCornerRadiusTopStart="8dp"
         app:boxStrokeColor="@color/secondary"
-        app:counterMaxLength="10"
+        app:counterMaxLength="15"
         app:errorEnabled="true"
         app:hintEnabled="true"
         app:layout_constraintBottom_toTopOf="@+id/addIncomes"
         app:layout_constraintStart_toEndOf="@id/OutlinedTextInputLayout"
-        app:startIconDrawable="@drawable/ic_attach_money_24dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.45">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/amount"
-            android:layout_width="150dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal" />
     </com.google.android.material.textfield.TextInputLayout>

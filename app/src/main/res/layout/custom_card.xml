@@ -23,9 +23,24 @@
         android:layout_height="wrap_content"
         android:textAlignment="textEnd"
         android:layout_marginVertical="@dimen/activity_horizontal_margin"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="48dp"
         android:textSize="22sp"
         app:layout_constraintStart_toEndOf="@id/Cardlabel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBaseline_toBaselineOf="@id/Cardlabel"/>
+
+
+    <ImageButton
+        android:id="@+id/dropdownMenuButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_more_vert"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/dropdown_menu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="16dp"
+        android:visibility="gone"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

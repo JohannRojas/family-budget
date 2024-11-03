@@ -19,5 +19,9 @@
     <string name="add_expense_button">Añadir nuevo gasto</string>
     <string name="amount_hint">Monto</string>
     <string name="origin_hint">Origen</string>
+    <string name="add_income_button">Agregar nuevo ingreso</string>
+    <string name="edit_income_button">Editar ingreso</string>
+    <string name="edit_expense_button">Editar gasto</string>
+    <string name="dropdown_menu">card_options\n</string>
 
 </resources>

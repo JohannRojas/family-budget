@@ -1,11 +1,16 @@
 package com.example.familybudget.ui
 
-import com.example.familybudget.R
-
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.widget.ImageButton
+import android.widget.PopupMenu
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import com.example.familybudget.R
 import com.google.android.material.card.MaterialCardView
 
 class CustomCardView @JvmOverloads constructor(
@@ -16,48 +21,82 @@ class CustomCardView @JvmOverloads constructor(
 
     private val labelTextView: TextView
     private val valueTextView: TextView
+    private val dropdownMenuButton: ImageButton
 
     init {
         val view = LayoutInflater.from(context).inflate(R.layout.custom_card, this, true)
         labelTextView = view.findViewById(R.id.Cardlabel)
         valueTextView = view.findViewById(R.id.Cardvalue)
+        dropdownMenuButton = view.findViewById(R.id.dropdownMenuButton)
 
-        val cardCornerRadius = context.resources.getDimension(R.dimen.card_corner_radius)
-        radius = cardCornerRadius.toFloat()
-        elevation = context.resources.getDimension(R.dimen.card_elevation)
-
-        val attributes = context.obtainStyledAttributes(attrs, R.styleable.CustomCardView)
-        try {
-            val backgroundColor = attributes.getColor(
-                R.styleable.CustomCardView_cardBackgroundColor,
-                context.getColor(R.color.primary)
-            )
-            val textColor = attributes.getColor(
-                R.styleable.CustomCardView_cardTextColor,
-                context.getColor(R.color.white)
-            )
-            val labelText = attributes.getString(R.styleable.CustomCardView_cardLabelText) ?: "0"
-            val valueText = attributes.getString(R.styleable.CustomCardView_cardValueText) ?: "0"
-
-            setCardBackgroundColor(backgroundColor)
-            labelTextView.setTextColor(textColor)
-            valueTextView.setTextColor(textColor)
-            labelTextView.text = labelText
-            valueTextView.text = valueText
-        } finally {
-            attributes.recycle()
+        dropdownMenuButton.setOnClickListener {
+            showPopupMenu(it)
         }
     }
 
+    private fun showPopupMenu(view: View) {
+        val popup = PopupMenu(context, view)
+        val inflater: MenuInflater = popup.menuInflater
+        inflater.inflate(R.menu.card_menu, popup.menu)
+        popup.setOnMenuItemClickListener { menuItem: MenuItem ->
+            when (menuItem.itemId) {
+                R.id.action_edit -> {
+                    onEditClickListener?.onClick(this)
+                    true
+                }
+                R.id.action_delete -> {
+                    onDeleteClickListener?.onClick(this)
+                    true
+                }
+                else -> false
+            }
+        }
+        popup.show()
+    }
+
     fun setValueText(value: String) {
-        valueTextView.text = value
+        valueTextView.text = "$$value"
     }
 
     fun setLabelText(label: String) {
         labelTextView.text = label
     }
 
+    fun setLabelTextColor(color: Int) {
+        labelTextView.setTextColor(color)
+    }
+
+    fun setValueTextColor(color: Int) {
+        valueTextView.setTextColor(color)
+    }
+
+    fun showOptionsButton(show: Boolean) {
+        dropdownMenuButton.visibility = if (show) View.VISIBLE else View.GONE
+        val params = valueTextView.layoutParams as ConstraintLayout.LayoutParams
+        params.marginEnd = if (show) {
+            context.resources.getDimensionPixelSize(R.dimen.margin_with_button)
+        } else {
+            context.resources.getDimensionPixelSize(R.dimen.margin_without_button)
+        }
+        valueTextView.layoutParams = params
+    }
+
+    private var onEditClickListener: OnClickListener? = null
+    private var onDeleteClickListener: OnClickListener? = null
+
+    fun setOnEditClickListener(listener: OnClickListener) {
+        onEditClickListener = listener
+    }
+
+    fun setOnDeleteClickListener(listener: OnClickListener) {
+        onDeleteClickListener = listener
+    }
+
     override fun setCardBackgroundColor(color: Int) {
         super.setCardBackgroundColor(color)
+    }
+
+    fun getValueText(): String {
+        return valueTextView.text.toString()
     }
 }
