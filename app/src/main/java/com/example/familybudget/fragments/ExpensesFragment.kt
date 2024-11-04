@@ -89,11 +89,13 @@ class ExpensesFragment : Fragment() {
     private fun updateExpenseInFirebase(expenseId: String, origin: String, amount: String) {
         val userId = auth.currentUser?.uid
         if (userId != null) {
-            val userExpenseRef = database.child("users").child(userId).child("expenses").child(expenseId)
+            val userExpenseRef =
+                database.child("users").child(userId).child("expenses").child(expenseId)
             val updatedExpense = mapOf("origin" to origin, "amount" to amount)
             userExpenseRef.updateChildren(updatedExpense).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Toast.makeText(context, "Expense updated successfully", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Expense updated successfully", Toast.LENGTH_SHORT)
+                        .show()
                     Log.d("ExpensesFragment", "Expense updated successfully")
                 } else {
                     Toast.makeText(context, "Failed to update expense", Toast.LENGTH_SHORT).show()
@@ -120,7 +122,12 @@ class ExpensesFragment : Fragment() {
                             val expenseCard = CustomCardView(requireContext())
                             expenseCard.setLabelText(origin)
                             expenseCard.setValueText(amount)
-                            expenseCard.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.warning))
+                            expenseCard.setCardBackgroundColor(
+                                ContextCompat.getColor(
+                                    requireContext(),
+                                    R.color.warning
+                                )
+                            )
                             expenseCard.showOptionsButton(true)
 
                             val layoutParams = LinearLayout.LayoutParams(
@@ -131,7 +138,6 @@ class ExpensesFragment : Fragment() {
                             expenseCard.layoutParams = layoutParams
 
                             expenseCard.setOnEditClickListener {
-                                // Handle edit action
                                 inputOrigin.setText(origin)
                                 inputAmount.setText(amount)
                                 addExpensesButton.text = getString(R.string.edit_expense_button)
@@ -139,7 +145,6 @@ class ExpensesFragment : Fragment() {
                             }
 
                             expenseCard.setOnDeleteClickListener {
-                                // Handle delete action
                                 deleteExpense(expenseId)
                             }
 
@@ -150,8 +155,14 @@ class ExpensesFragment : Fragment() {
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    Toast.makeText(context, "Failed to retrieve expenses", Toast.LENGTH_SHORT).show()
-                    Log.e("ExpensesFragment", "Failed to retrieve expenses", error.toException())
+                    activity?.let {
+                        Toast.makeText(it, "Failed to retrieve expenses", Toast.LENGTH_SHORT).show()
+                        Log.e(
+                            "ExpensesFragment",
+                            "Failed to retrieve expenses",
+                            error.toException()
+                        )
+                    }
                 }
             })
         } else {
@@ -162,10 +173,12 @@ class ExpensesFragment : Fragment() {
     private fun deleteExpense(expenseId: String) {
         val userId = auth.currentUser?.uid
         if (userId != null) {
-            val userExpenseRef = database.child("users").child(userId).child("expenses").child(expenseId)
+            val userExpenseRef =
+                database.child("users").child(userId).child("expenses").child(expenseId)
             userExpenseRef.removeValue().addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Toast.makeText(context, "Expense deleted successfully", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Expense deleted successfully", Toast.LENGTH_SHORT)
+                        .show()
                     Log.d("ExpensesFragment", "Expense deleted successfully")
                 } else {
                     Toast.makeText(context, "Failed to delete expense", Toast.LENGTH_SHORT).show()

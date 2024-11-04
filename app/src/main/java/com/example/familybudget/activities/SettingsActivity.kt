@@ -8,6 +8,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import com.example.familybudget.R
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 
 // AjustesActivity.kt
 class SettingsActivity : AppCompatActivity() {
@@ -15,6 +16,7 @@ class SettingsActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var toolbar: Toolbar
     private lateinit var toolbarTitle: TextView
+    private lateinit var tvUsername: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,18 +27,33 @@ class SettingsActivity : AppCompatActivity() {
         // Configurar Toolbar
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         // Configurar título centrado
         toolbarTitle = findViewById(R.id.toolbar_title)
         supportActionBar?.setDisplayShowTitleEnabled(false)
         toolbarTitle.text = "Ajustes"
 
+        tvUsername = findViewById(R.id.tvUsername)
+
+        val user: FirebaseUser? = auth.currentUser
+        user?.let {
+            val name = it.displayName
+            tvUsername.text = name?: "Usuario"
+        }
+
         val btnLogout = findViewById<LinearLayout>(R.id.btnLogout)
         btnLogout.setOnClickListener {
             auth.signOut()
             val intent = Intent(this, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
             finish()
         }
+
     }
+        override fun onSupportNavigateUp(): Boolean {
+            onBackPressed()
+            return true
+        }
 }

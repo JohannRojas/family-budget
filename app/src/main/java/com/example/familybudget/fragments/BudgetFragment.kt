@@ -107,35 +107,52 @@ class BudgetFragment : Fragment() {
             val userBudgetRef = database.child("users").child(userId).child("budget")
             val userExpensesRef = database.child("users").child(userId).child("expenses")
 
-            userBudgetRef.addValueEventListener(object : ValueEventListener {
+            var budget: Int? = null
+            var totalExpenses: Int? = null
+
+            userBudgetRef.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    val budget = snapshot.getValue(String::class.java)?.toIntOrNull() ?: 0
+                    budget = snapshot.getValue(String::class.java)?.toIntOrNull() ?: 0
                     totalBudgetCard.setValueText(budget.toString())
-                    calculateRemainingBudget(budget)
+                    if (totalExpenses != null) {
+                        budget?.let { b ->
+                            totalExpenses?.let { e ->
+                                calculateRemainingBudget(b, e)
+                            }
+                        }
+                    }
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    Toast.makeText(context, "Failed to retrieve budget", Toast.LENGTH_SHORT).show()
-                    Log.e("BudgetFragment", "Failed to retrieve budget", error.toException())
+                    activity?.let {
+                        Toast.makeText(it, "Failed to retrieve budget", Toast.LENGTH_SHORT).show()
+                        Log.e("BudgetFragment", "Failed to retrieve budget", error.toException())
+                    }
                 }
             })
 
-            userExpensesRef.addValueEventListener(object : ValueEventListener {
+            userExpensesRef.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    var totalExpenses = 0
+                    totalExpenses = 0
                     for (expenseSnapshot in snapshot.children) {
-                        val amount = expenseSnapshot.child("amount").getValue(String::class.java)
-                            ?.toIntOrNull() ?: 0
-                        totalExpenses += amount
+                        val amount = expenseSnapshot.child("amount").getValue(String::class.java)?.toIntOrNull() ?: 0
+                        totalExpenses = totalExpenses!! + amount
                     }
                     expensesCard.setValueText(totalExpenses.toString())
-                    calculateRemainingBudget(null, totalExpenses)
+                    if (budget != null) {
+                        budget?.let { b ->
+                            totalExpenses?.let { e ->
+                                calculateRemainingBudget(b, e)
+                            }
+                        }
+                    }
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    Toast.makeText(context, "Failed to retrieve expenses", Toast.LENGTH_SHORT)
-                        .show()
-                    Log.e("BudgetFragment", "Failed to retrieve expenses", error.toException())
+                    activity?.let {
+                        Toast.makeText(it, "Failed to retrieve expenses", Toast.LENGTH_SHORT).show()
+                        Log.e("BudgetFragment", "Failed to retrieve expenses", error.toException())
+                    }
                 }
             })
         } else {

@@ -2,7 +2,6 @@ package com.example.familybudget.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
@@ -11,6 +10,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.viewpager2.widget.ViewPager2
 import com.example.familybudget.R
 import com.example.familybudget.adapters.ViewPagerAdapter
+import com.example.familybudget.fragments.BudgetFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
@@ -32,6 +32,13 @@ class MainActivity : AppCompatActivity() {
 
         val auth = FirebaseAuth.getInstance()
 
+        if (auth.currentUser == null) {
+            // User is not logged in, redirect to LoginActivity
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+            return
+        }
         // Initialize Firebase Database
         val database = FirebaseDatabase.getInstance()
 
@@ -43,7 +50,7 @@ class MainActivity : AppCompatActivity() {
         toolbarTitle = findViewById(R.id.toolbar_title)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
-        // Configurar ViewPager2
+//         Configurar ViewPager2
         viewPager = findViewById(R.id.viewPager)
         val adapter = ViewPagerAdapter(this)
         viewPager.adapter = adapter
@@ -87,6 +94,7 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import com.example.familybudget.R
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -28,8 +29,6 @@ class RegisterActivity : AppCompatActivity() {
         // Ocultar ActionBar
         supportActionBar?.hide()
         setContentView(R.layout.activity_register)
-
-
 
         auth = FirebaseAuth.getInstance()
 
@@ -126,4 +125,5 @@ class RegisterActivity : AppCompatActivity() {
                 }
             }
     }
+
 }

@@ -125,7 +125,6 @@ class IncomesFragment : Fragment() {
                             incomeCard.showOptionsButton(true)
                             incomeCard.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.secondary))
 
-
                             val layoutParams = LinearLayout.LayoutParams(
                                 LinearLayout.LayoutParams.MATCH_PARENT,
                                 LinearLayout.LayoutParams.WRAP_CONTENT
@@ -134,7 +133,6 @@ class IncomesFragment : Fragment() {
                             incomeCard.layoutParams = layoutParams
 
                             incomeCard.setOnEditClickListener {
-                                // Handle edit action
                                 inputOrigin.setText(origin)
                                 inputAmount.setText(amount)
                                 addIncomesButton.text = getString(R.string.edit_income_button)
@@ -142,7 +140,6 @@ class IncomesFragment : Fragment() {
                             }
 
                             incomeCard.setOnDeleteClickListener {
-                                // Handle delete action
                                 deleteIncome(incomeId)
                             }
 
@@ -153,8 +150,10 @@ class IncomesFragment : Fragment() {
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    Toast.makeText(context, "Failed to retrieve incomes", Toast.LENGTH_SHORT).show()
-                    Log.e("IncomesFragment", "Failed to retrieve incomes", error.toException())
+                    activity?.let {
+                        Toast.makeText(it, "Failed to retrieve incomes", Toast.LENGTH_SHORT).show()
+                        Log.e("IncomesFragment", "Failed to retrieve incomes", error.toException())
+                    }
                 }
             })
         } else {
