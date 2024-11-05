@@ -46,6 +46,12 @@ class LoginActivity : AppCompatActivity() {
 
             val email = findViewById<TextView>(R.id.etEmail).text.toString()
             val password = findViewById<TextView>(R.id.etPassword).text.toString()
+
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Email and password are required", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             loginUser(email, password)
 
             val intent = Intent(this, MainActivity::class.java)
@@ -54,7 +60,6 @@ class LoginActivity : AppCompatActivity() {
         }
 
         btnRegister.setOnClickListener {
-            // Navegar a RegisterActivity
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }

@@ -4,35 +4,46 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.example.familybudget.ui.CustomCardView
-        android:id="@+id/totalBudgetCard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="32dp"
-        app:cardBackgroundColor="@color/secondary"
-        app:cardLabelText="Presupuesto Total:"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/labelBudgetInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <com.example.familybudget.ui.CustomCardView
-        android:id="@+id/billsCard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="32dp"
-        app:cardBackgroundColor="@color/alert"
-        app:cardLabelText="Gastos:"
-        app:layout_constraintTop_toBottomOf="@id/totalBudgetCard" />
+        <com.example.familybudget.ui.CustomCardView
+            android:id="@+id/totalBudgetCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="32dp"
+            app:cardBackgroundColor="@color/secondary"
+            app:cardLabelText="Presupuesto Total:"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <com.example.familybudget.ui.CustomCardView
-        android:id="@+id/remainingCard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="32dp"
-        app:cardBackgroundColor="@color/secondary"
-        app:cardLabelText="Restante:"
-        app:layout_constraintTop_toBottomOf="@id/billsCard" />
+        <com.example.familybudget.ui.CustomCardView
+            android:id="@+id/billsCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="32dp"
+            app:cardBackgroundColor="@color/alert"
+            app:cardLabelText="Gastos:"
+            app:layout_constraintTop_toBottomOf="@id/totalBudgetCard" />
+
+        <com.example.familybudget.ui.CustomCardView
+            android:id="@+id/remainingCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="32dp"
+            app:cardBackgroundColor="@color/secondary"
+            app:cardLabelText="Restante:"
+            app:layout_constraintTop_toBottomOf="@id/billsCard" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/labelBudgetInput"
@@ -52,7 +63,7 @@
         android:layout_marginHorizontal="16dp"
         android:hint="@string/new_budget_title"
         app:boxBackgroundColor="@color/white"
-        app:boxBackgroundMode="filled"
+        app:boxBackgroundMode="outline"
         app:boxCornerRadiusBottomEnd="8dp"
         app:boxCornerRadiusBottomStart="8dp"
         app:boxCornerRadiusTopEnd="8dp"
@@ -64,15 +75,16 @@
         app:errorEnabled="true"
         app:layout_constraintBottom_toTopOf="@+id/addNewBudget"
         app:shapeAppearanceOverlay="@style/CustomTextInputLayout"
-        app:startIconDrawable="@drawable/ic_attach_money_24dp">
+        app:startIconDrawable="@drawable/ic_attach_money_24dp"
+        app:startIconTint="@color/secondary">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputBudget"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
             android:textAlignment="viewStart" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -88,18 +100,5 @@
         app:cornerRadius="16dp"
         app:layout_constraintBottom_toBottomOf="parent" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="20dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="16dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 

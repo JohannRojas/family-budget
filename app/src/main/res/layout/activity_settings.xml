@@ -46,7 +46,6 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
                 android:src="@drawable/ic_user"
                 app:tint="@color/black"/>
 
@@ -54,7 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nombre de usuario"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="16dp"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -65,7 +64,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="textEnd"
-            android:text="Jhann"
             android:textStyle="bold"
             android:textSize="18sp"
             android:textColor="@color/black" />
@@ -82,7 +80,6 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
             android:src="@drawable/ic_logout"
             app:tint="@color/black"/>
 
@@ -91,7 +88,7 @@
             android:layout_height="wrap_content"
             android:text="Cerrar Sesión"
             android:textColor="@color/black"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="16dp"
             android:textSize="18sp"
             android:textStyle="bold" />
     </LinearLayout>

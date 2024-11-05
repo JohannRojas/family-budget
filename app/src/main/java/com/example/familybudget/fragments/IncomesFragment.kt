@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -14,11 +15,7 @@ import com.example.familybudget.R
 import com.example.familybudget.ui.CustomCardView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 
 class IncomesFragment : Fragment() {
 
@@ -28,6 +25,7 @@ class IncomesFragment : Fragment() {
     private lateinit var inputOrigin: TextInputEditText
     private lateinit var inputAmount: TextInputEditText
     private lateinit var addIncomesButton: Button
+    private lateinit var noIncomesMessage: TextView
     private var editingIncomeId: String? = null
 
     override fun onCreateView(
@@ -43,6 +41,7 @@ class IncomesFragment : Fragment() {
         inputOrigin = view.findViewById(R.id.origin)
         inputAmount = view.findViewById(R.id.amount)
         addIncomesButton = view.findViewById(R.id.addIncomes)
+        noIncomesMessage = view.findViewById(R.id.noIncomesMessage)
 
         retrieveIncomesFromFirebase()
 
@@ -61,6 +60,7 @@ class IncomesFragment : Fragment() {
                 editingIncomeId = null
             } else {
                 Log.d("IncomesFragment", "Origin or amount input is empty")
+                Toast.makeText(context, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -74,10 +74,10 @@ class IncomesFragment : Fragment() {
             val income = mapOf("origin" to origin, "amount" to amount)
             userIncomesRef.setValue(income).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Toast.makeText(context, "Income saved successfully", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Ingreso guardado exitosamente", Toast.LENGTH_SHORT).show()
                     Log.d("IncomesFragment", "Income saved successfully")
                 } else {
-                    Toast.makeText(context, "Failed to save income", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Error al guardar el ingreso", Toast.LENGTH_SHORT).show()
                     Log.e("IncomesFragment", "Failed to save income", task.exception)
                 }
             }
@@ -93,10 +93,10 @@ class IncomesFragment : Fragment() {
             val updatedIncome = mapOf("origin" to origin, "amount" to amount)
             userIncomeRef.updateChildren(updatedIncome).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Toast.makeText(context, "Income updated successfully", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Ingreso actualizado exitosamente", Toast.LENGTH_SHORT).show()
                     Log.d("IncomesFragment", "Income updated successfully")
                 } else {
-                    Toast.makeText(context, "Failed to update income", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Error al actualizar el ingreso", Toast.LENGTH_SHORT).show()
                     Log.e("IncomesFragment", "Failed to update income", task.exception)
                 }
             }
@@ -112,38 +112,47 @@ class IncomesFragment : Fragment() {
             userIncomesRef.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     incomesContainer.removeAllViews()
-                    for (incomeSnapshot in snapshot.children) {
-                        val origin = incomeSnapshot.child("origin").getValue(String::class.java)
-                        val amount = incomeSnapshot.child("amount").getValue(String::class.java)
-                        val incomeId = incomeSnapshot.key
-                        if (origin != null && amount != null && incomeId != null) {
-                            val incomeCard = CustomCardView(requireContext())
-                            incomeCard.setLabelText(origin)
-                            incomeCard.setValueText(amount)
-                            incomeCard.setValueTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-                            incomeCard.setLabelTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-                            incomeCard.showOptionsButton(true)
-                            incomeCard.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.secondary))
 
-                            val layoutParams = LinearLayout.LayoutParams(
-                                LinearLayout.LayoutParams.MATCH_PARENT,
-                                LinearLayout.LayoutParams.WRAP_CONTENT
-                            )
-                            layoutParams.setMargins(32, 0, 32, 16)
-                            incomeCard.layoutParams = layoutParams
+                    if (!snapshot.exists() || !snapshot.hasChildren()) {
+                        noIncomesMessage.visibility = View.VISIBLE
+                        incomesContainer.visibility = View.GONE
+                    } else {
+                        noIncomesMessage.visibility = View.GONE
+                        incomesContainer.visibility = View.VISIBLE
 
-                            incomeCard.setOnEditClickListener {
-                                inputOrigin.setText(origin)
-                                inputAmount.setText(amount)
-                                addIncomesButton.text = getString(R.string.edit_income_button)
-                                editingIncomeId = incomeId
+                        for (incomeSnapshot in snapshot.children) {
+                            val origin = incomeSnapshot.child("origin").getValue(String::class.java)
+                            val amount = incomeSnapshot.child("amount").getValue(String::class.java)
+                            val incomeId = incomeSnapshot.key
+                            if (origin != null && amount != null && incomeId != null) {
+                                val incomeCard = CustomCardView(requireContext())
+                                incomeCard.setLabelText(origin)
+                                incomeCard.setValueText(amount)
+                                incomeCard.setValueTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+                                incomeCard.setLabelTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+                                incomeCard.showOptionsButton(true)
+                                incomeCard.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.secondary))
+
+                                val layoutParams = LinearLayout.LayoutParams(
+                                    LinearLayout.LayoutParams.MATCH_PARENT,
+                                    LinearLayout.LayoutParams.WRAP_CONTENT
+                                )
+                                layoutParams.setMargins(32, 0, 32, 16)
+                                incomeCard.layoutParams = layoutParams
+
+                                incomeCard.setOnEditClickListener {
+                                    inputOrigin.setText(origin)
+                                    inputAmount.setText(amount)
+                                    addIncomesButton.text = getString(R.string.edit_income_button)
+                                    editingIncomeId = incomeId
+                                }
+
+                                incomeCard.setOnDeleteClickListener {
+                                    deleteIncome(incomeId)
+                                }
+
+                                incomesContainer.addView(incomeCard)
                             }
-
-                            incomeCard.setOnDeleteClickListener {
-                                deleteIncome(incomeId)
-                            }
-
-                            incomesContainer.addView(incomeCard)
                         }
                     }
                     Log.d("IncomesFragment", "Incomes retrieved")
@@ -151,7 +160,7 @@ class IncomesFragment : Fragment() {
 
                 override fun onCancelled(error: DatabaseError) {
                     activity?.let {
-                        Toast.makeText(it, "Failed to retrieve incomes", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(it, "Error al recuperar los ingresos", Toast.LENGTH_SHORT).show()
                         Log.e("IncomesFragment", "Failed to retrieve incomes", error.toException())
                     }
                 }
@@ -167,10 +176,10 @@ class IncomesFragment : Fragment() {
             val userIncomeRef = database.child("users").child(userId).child("incomes").child(incomeId)
             userIncomeRef.removeValue().addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Toast.makeText(context, "Income deleted successfully", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Ingreso eliminado exitosamente", Toast.LENGTH_SHORT).show()
                     Log.d("IncomesFragment", "Income deleted successfully")
                 } else {
-                    Toast.makeText(context, "Failed to delete income", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Error al eliminar el ingreso", Toast.LENGTH_SHORT).show()
                     Log.e("IncomesFragment", "Failed to delete income", task.exception)
                 }
             }

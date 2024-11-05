@@ -2,6 +2,7 @@ package com.example.familybudget.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
@@ -10,7 +11,6 @@ import com.example.familybudget.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
-// AjustesActivity.kt
 class SettingsActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
@@ -24,12 +24,10 @@ class SettingsActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-        // Configurar Toolbar
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        // Configurar título centrado
         toolbarTitle = findViewById(R.id.toolbar_title)
         supportActionBar?.setDisplayShowTitleEnabled(false)
         toolbarTitle.text = "Ajustes"
@@ -39,7 +37,8 @@ class SettingsActivity : AppCompatActivity() {
         val user: FirebaseUser? = auth.currentUser
         user?.let {
             val name = it.displayName
-            tvUsername.text = name?: "Usuario"
+            Log.d("SettingsActivity", "Username: $name")
+            tvUsername.text = if (name.isNullOrBlank()) "Usuario" else name
         }
 
         val btnLogout = findViewById<LinearLayout>(R.id.btnLogout)

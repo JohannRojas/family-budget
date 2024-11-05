@@ -17,49 +17,142 @@
         android:textStyle="bold" />
 
     <!-- Campo de correo electrónico -->
-    <EditText
-        android:id="@+id/etEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
-        android:hint="Correo electrónico"
-        android:inputType="textEmailAddress" />
-
-    <!-- Campo de contraseña -->
-    <EditText
-        android:id="@+id/etPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:hint="Contraseña"
-        android:inputType="textPassword" />
-    <!--    repetir contraseña -->
-    <EditText
-        android:id="@+id/etConfirmPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:hint="Confirma la Contraseña"
-        android:inputType="textPassword" />
-
-    <!-- Botón de inicio de sesión -->
-    <Button
-        android:id="@+id/btnRegisterAccount"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        app:cornerRadius="16dp"
-        android:layout_marginTop="64dp"
-        android:text="@string/create_account_button"
-        app:iconGravity="textStart" />
-
-    <!-- Separador con texto en medio de "O continua con" -->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginTop="32dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Correo electrónico"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Correo electrónico"
+            app:boxBackgroundColor="@color/white"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusBottomEnd="4dp"
+            app:boxCornerRadiusBottomStart="4dp"
+            app:boxCornerRadiusTopEnd="4dp"
+            app:boxCornerRadiusTopStart="4dp"
+            app:boxStrokeColor="@color/black"
+            app:boxStrokeWidth="1dp"
+            app:startIconDrawable="@drawable/mail_24px"
+            app:startIconTint="@color/secondary">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <!-- Campo de contraseña -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Contraseña"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Contraseña"
+            app:boxBackgroundColor="@color/white"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusBottomEnd="4dp"
+            app:boxCornerRadiusBottomStart="4dp"
+            app:boxCornerRadiusTopEnd="4dp"
+            app:boxCornerRadiusTopStart="4dp"
+            app:boxStrokeColor="@color/black"
+            app:boxStrokeWidth="1dp"
+            app:startIconDrawable="@drawable/lock_24px"
+            app:startIconTint="@color/secondary">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <!-- Repetir contraseña -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Repetir Contraseña"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilConfirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Confirma la Contraseña"
+            app:boxBackgroundColor="@color/white"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusBottomEnd="4dp"
+            app:boxCornerRadiusBottomStart="4dp"
+            app:boxCornerRadiusTopEnd="4dp"
+            app:boxCornerRadiusTopStart="4dp"
+            app:boxStrokeColor="@color/black"
+            app:boxStrokeWidth="1dp"
+            app:startIconDrawable="@drawable/lock_24px"
+            app:startIconTint="@color/secondary">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etConfirmPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <!-- Botón de registro -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnRegisterAccount"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="64dp"
+        android:text="@string/create_account_button"
+        app:cornerRadius="16dp"
+        app:iconGravity="textStart" />
+
+    <!-- Separador con texto en medio de "O continúa con" -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="32dp"
         android:gravity="center_vertical"
-        android:layout_marginVertical="32dp">
+        android:orientation="horizontal">
 
         <View
             android:layout_width="0dp"
@@ -85,20 +178,19 @@
 
     </LinearLayout>
 
-    <!-- Botón de inicio de sesión con Google sin cambiar el color del icono-->
-    <Button
+    <!-- Botón de inicio de sesión con Google con borde -->
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnGoogleSignIn"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_marginBottom="32dp"
         android:backgroundTint="@color/white"
-        app:icon="@drawable/google_logo"
-        app:iconTint="@null"
         android:text="@string/google_signin_text"
         android:textColor="@color/black"
         app:cornerRadius="16dp"
-        app:borderWidth="1dp" />
+        app:icon="@drawable/google_logo"
+        app:iconTint="@null"
+        app:strokeColor="@color/black"
+        app:strokeWidth="1dp" />
 
-
-
-    </LinearLayout>
+</LinearLayout>

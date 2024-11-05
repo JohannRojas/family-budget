@@ -1,16 +1,17 @@
 package com.example.familybudget.activities
 
 import android.content.Intent
+import android.graphics.Rect
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.viewpager2.widget.ViewPager2
 import com.example.familybudget.R
 import com.example.familybudget.adapters.ViewPagerAdapter
-import com.example.familybudget.fragments.BudgetFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
@@ -26,37 +27,30 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
         FirebaseApp.initializeApp(this)
         setContentView(R.layout.activity_main)
 
         val auth = FirebaseAuth.getInstance()
 
         if (auth.currentUser == null) {
-            // User is not logged in, redirect to LoginActivity
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
             return
         }
-        // Initialize Firebase Database
         val database = FirebaseDatabase.getInstance()
 
-        // Configurar Toolbar
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        // Configurar título centrado
         toolbarTitle = findViewById(R.id.toolbar_title)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
-//         Configurar ViewPager2
         viewPager = findViewById(R.id.viewPager)
         val adapter = ViewPagerAdapter(this)
         viewPager.adapter = adapter
         viewPager.offscreenPageLimit = 3
 
-        // Configurar Bottom Navigation View
         bottomNavView = findViewById(R.id.bottomNavigationView)
         bottomNavView.setOnItemSelectedListener { item ->
             when (item.itemId) {
@@ -67,12 +61,24 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-        // Sincronizar el título del Toolbar y el Bottom Navigation View al deslizar
+        val rootView = findViewById<View>(R.id.root_layout)
+        rootView.viewTreeObserver.addOnGlobalLayoutListener {
+            val rect = Rect()
+            rootView.getWindowVisibleDisplayFrame(rect)
+            val screenHeight = rootView.rootView.height
+            val keypadHeight = screenHeight - rect.bottom
+
+            if (keypadHeight > screenHeight * 0.15) {
+                bottomNavView.visibility = View.GONE
+            } else {
+                bottomNavView.visibility = View.VISIBLE
+            }
+        }
+
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 bottomNavView.menu.getItem(position).isChecked = true
-                // Actualizar el título del Toolbar
                 when (position) {
                     0 -> toolbarTitle.text = "Presupuesto"
                     1 -> toolbarTitle.text = "Gastos"

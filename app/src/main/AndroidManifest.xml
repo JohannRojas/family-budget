@@ -21,6 +21,7 @@
         <!-- MainActivity (set as the start activity) -->
         <activity
             android:name=".activities.MainActivity"
+            android:windowSoftInputMode="adjustResize"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

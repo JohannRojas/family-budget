@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "892354353679",
+    "project_id": "family-budget-3a846",
+    "storage_bucket": "family-budget-3a846.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:892354353679:android:899061267e916e71d0217a",
+        "android_client_info": {
+          "package_name": "com.example.familybudget"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "892354353679-5facbnlb97qgr7s9cm4tspvh6l5410n7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.familybudget",
+            "certificate_hash": "36f4feaea92158902790b6e5ffba2710d0667f0b"
+          }
+        },
+        {
+          "client_id": "892354353679-lpoqv56jag2g61t3gccmba1mump4g3l3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWC46B6b4Ka-Dqr10Jdj9Z9nUSawUq84s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "892354353679-lpoqv56jag2g61t3gccmba1mump4g3l3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

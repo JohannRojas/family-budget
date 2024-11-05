@@ -37,12 +37,20 @@
         <item name="android:textAlignment">center</item>
     </style>
 
-    <style name="CustomTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
-        <item name="boxStrokeColor">@color/secondary</item>
-        <item name="boxStrokeWidth">1dp</item>
-        <item name="boxCornerRadiusTopStart">8dp</item>
-        <item name="boxCornerRadiusTopEnd">8dp</item>
-        <item name="boxCornerRadiusBottomStart">8dp</item>
-        <item name="boxCornerRadiusBottomEnd">8dp</item>
+<!--    <style name="CustomTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">-->
+<!--        <item name="boxStrokeColor">@color/secondary</item>-->
+<!--        <item name="boxStrokeWidth">1dp</item>-->
+<!--        <item name="boxCornerRadiusTopStart">8dp</item>-->
+<!--        <item name="boxCornerRadiusTopEnd">8dp</item>-->
+<!--        <item name="boxCornerRadiusBottomStart">8dp</item>-->
+<!--        <item name="boxCornerRadiusBottomEnd">8dp</item>-->
+<!--    </style>-->
+    <style name="CustomTextInputLayout" parent="">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="colorError">@color/alert</item>
+        <item name="textAppearanceTitleMedium">@color/primary</item>
+        <item name="textAppearanceBodySmall">@color/black</item>
+        <item name="editTextStyle">@color/black</item>
     </style>
 </resources>

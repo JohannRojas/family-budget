@@ -4,6 +4,7 @@
     android:layout_height="match_parent">
 
     <ScrollView
+        android:id="@+id/expensesScrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:paddingTop="32dp"
@@ -19,6 +20,20 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" />
     </ScrollView>
+
+    <!-- TextView para mostrar el mensaje cuando no hay gastos -->
+    <TextView
+        android:id="@+id/noExpensesMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No hay gastos en este momento."
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="@id/expensesScrollView"
+        app:layout_constraintBottom_toBottomOf="@id/expensesScrollView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/labelBudgetInput"
@@ -41,6 +56,7 @@
         app:boxCornerRadiusTopEnd="8dp"
         app:boxCornerRadiusTopStart="8dp"
         app:boxStrokeColor="@color/secondary"
+        app:boxBackgroundMode="outline"
         app:boxStrokeWidth="1dp"
         app:counterMaxLength="15"
         app:errorEnabled="true"
@@ -54,7 +70,9 @@
             android:id="@+id/origin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textAutoComplete" />
+            android:inputType="textAutoComplete"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -68,6 +86,8 @@
         app:boxCornerRadiusTopEnd="8dp"
         app:boxCornerRadiusTopStart="8dp"
         app:boxStrokeColor="@color/secondary"
+        app:boxBackgroundMode="outline"
+        app:startIconTint="@color/secondary"
         app:counterMaxLength="15"
         app:errorEnabled="true"
         app:hintEnabled="true"
@@ -81,7 +101,9 @@
             android:id="@+id/amount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal" />
+            android:inputType="numberDecimal"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
