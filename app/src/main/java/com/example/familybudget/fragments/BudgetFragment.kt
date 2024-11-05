@@ -134,7 +134,6 @@ class BudgetFragment : Fragment() {
                 }
             }
 
-            // Listener para los gastos
             expensesListener = object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     currentExpenses = 0.0

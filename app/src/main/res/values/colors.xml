@@ -8,7 +8,6 @@
     <color name="warning">#E9C46A</color>
     <color name="transparent">#00000000</color>
 
-    <!-- Add the following lines for active and inactive label colors -->
-    <color name="active_label_color">#000000</color> <!-- White color for active labels -->
-    <color name="inactive_label_color">#B0B0B0</color> <!-- Light gray for inactive labels -->
+    <color name="active_label_color">#000000</color>
+    <color name="inactive_label_color">#B0B0B0</color>
 </resources>

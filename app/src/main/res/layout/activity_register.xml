@@ -5,7 +5,6 @@
     android:orientation="vertical"
     android:padding="24dp">
 
-    <!-- Título -->
     <TextView
         android:id="@+id/loginTitle"
         android:layout_width="match_parent"
@@ -16,7 +15,6 @@
         android:textSize="24sp"
         android:textStyle="bold" />
 
-    <!-- Campo de correo electrónico -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -56,7 +54,6 @@
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
-    <!-- Campo de contraseña -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -96,7 +93,6 @@
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
-    <!-- Repetir contraseña -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -136,7 +132,6 @@
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
-    <!-- Botón de registro -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnRegisterAccount"
         android:layout_width="match_parent"
@@ -146,7 +141,6 @@
         app:cornerRadius="16dp"
         app:iconGravity="textStart" />
 
-    <!-- Separador con texto en medio de "O continúa con" -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -178,7 +172,6 @@
 
     </LinearLayout>
 
-    <!-- Botón de inicio de sesión con Google con borde -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnGoogleSignIn"
         android:layout_width="match_parent"

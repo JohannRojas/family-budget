@@ -21,7 +21,6 @@
             android:orientation="vertical" />
     </ScrollView>
 
-    <!-- TextView para mostrar el mensaje cuando no hay gastos -->
     <TextView
         android:id="@+id/noExpensesMessage"
         android:layout_width="wrap_content"

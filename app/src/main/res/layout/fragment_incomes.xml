@@ -21,7 +21,6 @@
             android:orientation="vertical" />
     </ScrollView>
 
-    <!-- TextView para mostrar el mensaje cuando no hay ingresos -->
     <TextView
         android:id="@+id/noIncomesMessage"
         android:layout_width="wrap_content"

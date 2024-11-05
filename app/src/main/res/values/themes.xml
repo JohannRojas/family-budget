@@ -1,20 +1,13 @@
-<!-- res/values/themes.xml -->
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
     <style name="Theme.FamilyBudget" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primary</item>
         <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/secondary</item>
         <item name="colorOnSecondary">@color/black</item>
         <item name="tabIndicatorColor">@android:color/transparent</item>
         <item name="tabRippleColor">@android:color/transparent</item>
-        <!-- Status bar color. -->
-        <!-- Customize your theme here. -->
     </style>
 
-    <!-- Define text appearance styles for BottomNavigationView -->
     <style name="BottomNavigationActiveText" parent="TextAppearance.MaterialComponents.Caption">
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/active_label_color</item>
@@ -29,7 +22,6 @@
         <item name="android:textAlignment">center</item>
     </style>
 
-    <!-- Define text appearance styles for Toolbar -->
     <style name="ToolbarText" parent="TextAppearance.MaterialComponents.Caption">
         <item name="android:textSize">32sp</item>
         <item name="android:textColor">@color/black</item>
@@ -37,14 +29,6 @@
         <item name="android:textAlignment">center</item>
     </style>
 
-<!--    <style name="CustomTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">-->
-<!--        <item name="boxStrokeColor">@color/secondary</item>-->
-<!--        <item name="boxStrokeWidth">1dp</item>-->
-<!--        <item name="boxCornerRadiusTopStart">8dp</item>-->
-<!--        <item name="boxCornerRadiusTopEnd">8dp</item>-->
-<!--        <item name="boxCornerRadiusBottomStart">8dp</item>-->
-<!--        <item name="boxCornerRadiusBottomEnd">8dp</item>-->
-<!--    </style>-->
     <style name="CustomTextInputLayout" parent="">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorOnSurface">@color/white</item>

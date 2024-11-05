@@ -37,7 +37,6 @@ class LoginActivity : AppCompatActivity() {
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
-        // Obtener referencias correctas a EditText
         val emailEditText = findViewById<TextInputEditText>(R.id.etEmail)
         val passwordEditText = findViewById<TextInputEditText>(R.id.etPassword)
 

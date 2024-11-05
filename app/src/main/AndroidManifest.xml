@@ -13,12 +13,10 @@
         android:theme="@style/Theme.FamilyBudget"
         tools:targetApi="31">
 
-        <!-- LoginActivity  -->
         <activity
             android:name=".activities.LoginActivity"
             android:exported="false" />
 
-        <!-- MainActivity (set as the start activity) -->
         <activity
             android:name=".activities.MainActivity"
             android:windowSoftInputMode="adjustResize"
@@ -29,12 +27,10 @@
             </intent-filter>
         </activity>
 
-        <!-- RegisterActivity -->
         <activity
             android:name=".activities.RegisterActivity"
             android:exported="false" />
 
-        <!-- SettingsActivity -->
         <activity
             android:name=".activities.SettingsActivity"
             android:exported="false" />
