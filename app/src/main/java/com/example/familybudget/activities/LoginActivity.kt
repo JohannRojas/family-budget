@@ -15,6 +15,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.android.material.textfield.TextInputEditText
 
 class LoginActivity : AppCompatActivity() {
 
@@ -36,27 +37,33 @@ class LoginActivity : AppCompatActivity() {
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
+        // Obtener referencias correctas a EditText
+        val emailEditText = findViewById<TextInputEditText>(R.id.etEmail)
+        val passwordEditText = findViewById<TextInputEditText>(R.id.etPassword)
+
         val btnLogin = findViewById<Button>(R.id.btnLogin)
         val btnRegister = findViewById<TextView>(R.id.btnRegister)
-        val btnGoogleSignIn = findViewById<Button>(R.id.btnGoogleSignIn).setOnClickListener {
-            sigInWithGoogle()
+        val btnGoogleSignIn = findViewById<Button>(R.id.btnGoogleSignIn)
+        btnGoogleSignIn.setOnClickListener {
+            signInWithGoogle()
+        }
+
+        val textForgotPassword = findViewById<TextView>(R.id.textOr)
+        textForgotPassword.setOnClickListener {
+            val intent = Intent(this, ResetPasswordActivity::class.java)
+            startActivity(intent)
         }
 
         btnLogin.setOnClickListener {
-
-            val email = findViewById<TextView>(R.id.etEmail).text.toString()
-            val password = findViewById<TextView>(R.id.etPassword).text.toString()
+            val email = emailEditText.text.toString().trim()
+            val password = passwordEditText.text.toString().trim()
 
             if (email.isEmpty() || password.isEmpty()) {
-                Toast.makeText(this, "Email and password are required", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Email y contraseña son requeridos", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             loginUser(email, password)
-
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
         }
 
         btnRegister.setOnClickListener {
@@ -69,17 +76,17 @@ class LoginActivity : AppCompatActivity() {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()
                 } else {
-                    Toast.makeText(this, "Login failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Error al iniciar sesión: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                 }
             }
     }
 
-    private fun sigInWithGoogle() {
+    private fun signInWithGoogle() {
         val signInIntent = googleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
@@ -99,7 +106,7 @@ class LoginActivity : AppCompatActivity() {
             val account = completedTask.getResult(ApiException::class.java)!!
             firebaseAuthWithGoogle(account.idToken!!)
         } catch (e: ApiException) {
-            Toast.makeText(this, "Google sign in failed: ${e.message}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Error al iniciar sesión con Google: ${e.message}", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -108,12 +115,12 @@ class LoginActivity : AppCompatActivity() {
         auth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    Toast.makeText(this, "Google sign in successful", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Inicio de sesión con Google exitoso", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()
                 } else {
-                    Toast.makeText(this, "Google sign in failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Error al iniciar sesión con Google: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                 }
             }
     }

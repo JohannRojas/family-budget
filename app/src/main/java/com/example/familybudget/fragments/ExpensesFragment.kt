@@ -167,7 +167,9 @@ class ExpensesFragment : Fragment() {
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    Toast.makeText(context, "Error al recuperar los gastos", Toast.LENGTH_SHORT).show()
+                    context?.let { ctx ->
+                        Toast.makeText(ctx, "Error al recuperar los gastos", Toast.LENGTH_SHORT).show()
+                    }
                     Log.e("ExpensesFragment", "Failed to retrieve expenses", error.toException())
                 }
             })
