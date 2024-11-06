@@ -39,4 +39,6 @@ Configura tu emulador o dispositivo movil
 
 Corre la aplicación
 
+Nota: recuerda que el botón de iniciar sesión con Google no funcionará si no tienes configurado el SHA-1 en la consola de Firebase
+
 
