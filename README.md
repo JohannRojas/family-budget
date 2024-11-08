@@ -41,6 +41,8 @@ Corre la aplicación
 
 **Importante**: recuerda que el botón de iniciar sesión con Google no funcionará si no tienes configurado el SHA-1 en la consola de Firebase
 
+Toca la siguiente imagen para ir al video demo de Family Budget
+
 [![Vista previa del video](https://img.youtube.com/vi/iXG7x5PvZ5E/maxresdefault.jpg)](https://www.youtube.com/watch?v=iXG7x5PvZ5E)
 
 
